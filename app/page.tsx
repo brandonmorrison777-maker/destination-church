@@ -1,20 +1,24 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import LoginModal from "./components/LoginModal";
 
 export default function Home() {
+  const [loginOpen, setLoginOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <LoginModal isOpen={loginOpen} onClose={() => setLoginOpen(false)} />
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 bg-white/95 backdrop-blur-md border-b border-gray-100">
         <Image src="/dc-logo.png" alt="Destination Church" width={200} height={55} priority />
         <div className="flex items-center gap-6">
-          <Link href="/login" className="text-gray-500 hover:text-gray-900 font-medium text-sm transition-colors">
-            Sign In
-          </Link>
-          <Link href="/register" className="bg-[#E07820] hover:bg-[#c9691a] text-white font-bold px-6 py-2.5 rounded-full text-sm transition-colors tracking-wide">
-            Join Free
-          </Link>
+          <button onClick={() => setLoginOpen(true)} className="bg-[#E07820] hover:bg-[#c9691a] text-white font-bold px-6 py-2.5 rounded-full text-sm transition-colors tracking-wide">
+            Login
+          </button>
         </div>
       </nav>
 
@@ -24,7 +28,7 @@ export default function Home() {
         <div className="absolute top-1/4 right-12 w-96 h-96 rounded-full bg-[#E07820]/10 blur-3xl" />
         <div className="relative z-10 px-8 md:px-16 pb-20 max-w-7xl mx-auto w-full">
           <p className="text-[#E07820] font-bold tracking-[0.3em] uppercase text-xs mb-8">
-            Destination Church &mdash; Spiritual Formation Platform
+            Destination Church &mdash; Spiritual Formation Portal
           </p>
           <h1 className="text-7xl md:text-[9rem] font-black text-white leading-[0.9] tracking-tighter mb-8 max-w-4xl">
             Grow<br />
@@ -34,15 +38,12 @@ export default function Home() {
           </h1>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mt-16 border-t border-white/10 pt-10">
             <p className="text-gray-400 text-lg max-w-md leading-relaxed">
-              A discipleship experience that combines powerful content with real learning science — so growth isn&apos;t just a feeling. It&apos;s measurable.
+              Combining powerful discipleship content with effective, practical principles of learning.
             </p>
             <div className="flex items-center gap-4 shrink-0">
-              <Link href="/register" className="bg-[#E07820] hover:bg-[#c9691a] text-white font-black px-10 py-4 rounded-full text-base transition-colors tracking-wide whitespace-nowrap">
-                Start Your Journey
-              </Link>
-              <Link href="/login" className="text-white/50 hover:text-white font-medium text-sm transition-colors whitespace-nowrap">
-                Already a member →
-              </Link>
+              <button onClick={() => setLoginOpen(true)} className="bg-[#E07820] hover:bg-[#c9691a] text-white font-black px-10 py-4 rounded-full text-base transition-colors tracking-wide whitespace-nowrap">
+                Access Your Dashboard
+              </button>
             </div>
           </div>
         </div>
@@ -53,17 +54,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-[#E07820] font-bold tracking-[0.3em] uppercase text-xs mb-6">The Problem</p>
+              <p className="text-[#E07820] font-bold tracking-[0.3em] uppercase text-xs mb-6">Hearing, Doing, Becoming</p>
               <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
-                There&apos;s a gap in spiritual formation.
+                Biblical Spiritual Formation.
               </h2>
             </div>
             <div className="space-y-6">
               <p className="text-gray-600 text-xl leading-relaxed">
-                Most people want to grow — but they don&apos;t have a clear, intentional path. Information without application. Activity without transformation.
+                Growth looks different for everyone. This experience meets you where you are — with intentional pathways, engaging content, and a personalized plan that moves you forward at your own pace. This is discipleship designed to be as dynamic as the life you are living.
               </p>
               <p className="text-gray-900 text-xl font-semibold leading-relaxed">
-                We built something different. High-level discipleship content, synced with actual learning science, in an experience that is <span className="text-[#E07820]">meaningful, measurable, and made for you.</span>
+                High-level discipleship content, synced with effective, practical learning, in an experience that is <span className="text-[#E07820]">meaningful, measurable, and made for you.</span>
               </p>
             </div>
           </div>
@@ -74,9 +75,9 @@ export default function Home() {
       <section className="py-32 px-8 md:px-16 bg-gray-950">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20">
-            <p className="text-[#E07820] font-bold tracking-[0.3em] uppercase text-xs mb-6">Four Pathways</p>
+            <p className="text-[#E07820] font-bold tracking-[0.3em] uppercase text-xs mb-6">Four Centers of Growth</p>
             <h2 className="text-4xl md:text-7xl font-black text-white leading-tight max-w-2xl">
-              Every area of your life. Covered.
+              Every area of your growth. Covered.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
@@ -84,8 +85,8 @@ export default function Home() {
               {
                 number: "01",
                 title: "Bible Explorer",
-                desc: "Go deeper in God's Word through overviews, in-depth studies, guided reading plans, and practical application activities that move Scripture from the page to your life.",
-                tags: ["Bible Overviews", "Studies", "Reading Plans", "Application"],
+                desc: "Go deeper in God's Word through discovery, practical studies, guided reading plans, and application activities that move Scripture from the page to your life.",
+                tags: ["Bible Discovery", "Studies", "Reading Plans", "Application"],
               },
               {
                 number: "02",
@@ -102,8 +103,8 @@ export default function Home() {
               {
                 number: "04",
                 title: "Leadership Development",
-                desc: "Step into the leader God called you to be. Training for those who serve at Destination Church — and a dedicated Ministerial Development track for those pursuing vocational ministry.",
-                tags: ["Leader Training", "Ministry Resources", "Ministerial Track", "Vocational Path"],
+                desc: "Become the leader God called you to be. Discover training for leading and serving at Destination Church, and a dedicated Ministerial Development track for those pursuing vocational ministry.",
+                tags: ["Leader Training", "Ministry Resources", "Ministerial Track", "Servant Leadership"],
               },
             ].map((hub) => (
               <div key={hub.number} className="bg-gray-950 p-12 hover:bg-gray-900 transition-colors group">
@@ -142,7 +143,7 @@ export default function Home() {
               {
                 step: "02",
                 title: "Learn & Engage",
-                desc: "Every lesson goes beyond reading. Videos, guided content, interactive activities, and assessments — designed to produce real transformation.",
+                desc: "Every activity goes beyond reading. Resources, guided content, interactive activities, and assessments — designed to help you grow.",
               },
               {
                 step: "03",
@@ -170,7 +171,7 @@ export default function Home() {
                 Grow together as a church family.
               </h2>
               <p className="text-gray-600 text-xl leading-relaxed">
-                This isn&apos;t just an online course — it&apos;s a community experience. Stay connected to your Life Group, track your journey alongside others, and celebrate milestones as a family.
+                Engage in the community discipleship experience. Stay connected to your Life Groups, track your journey alongside others, and celebrate milestones as a family.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -199,20 +200,16 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto">
           <h2 className="text-6xl md:text-9xl font-black text-white leading-none tracking-tighter mb-10">
-            Ready to<br />
-            <span className="text-[#E07820]">live it?</span>
+            <span className="text-[#E07820]">Live It.</span>
           </h2>
           <p className="text-gray-400 text-xl mb-12 max-w-xl mx-auto leading-relaxed">
             Join Destination Church&apos;s discipleship platform and start building the life God designed for you.
           </p>
-          <Link href="/register" className="bg-[#E07820] hover:bg-[#c9691a] text-white font-black px-14 py-5 rounded-full text-xl transition-colors inline-block tracking-wide">
-            Create My Free Account
-          </Link>
+          <button onClick={() => setLoginOpen(true)} className="bg-[#E07820] hover:bg-[#c9691a] text-white font-black px-14 py-5 rounded-full text-xl transition-colors tracking-wide">
+            Login
+          </button>
           <p className="text-gray-600 text-sm mt-8">
-            Already have an account?{" "}
-            <Link href="/login" className="text-gray-400 hover:text-white font-semibold transition-colors">
-              Sign in here →
-            </Link>
+            New to the portal? A member of the Connect Team will get you set up.
           </p>
         </div>
       </section>
@@ -223,8 +220,7 @@ export default function Home() {
           <Image src="/dc-logo-white.svg" alt="Destination Church" width={36} height={36} className="opacity-30" />
           <p className="text-gray-600 text-sm">&copy; {new Date().getFullYear()} Destination Church &mdash; don&apos;t just dream it. live it.</p>
           <div className="flex gap-6 text-gray-600 text-sm">
-            <Link href="/login" className="hover:text-gray-400 transition-colors">Sign In</Link>
-            <Link href="/register" className="hover:text-gray-400 transition-colors">Register</Link>
+            <button onClick={() => setLoginOpen(true)} className="hover:text-gray-400 transition-colors">Login</button>
           </div>
         </div>
       </footer>
